@@ -10,14 +10,6 @@ Console.WriteLine($"Nombre del cajero: {nombre_cajero}");
 Console.WriteLine($"Bienvenida, {nombre_cajero}. Caja abierta.");
 
 Console.WriteLine();
-Console.Write("Ingrese el nombre del producto: ");
-string nombre_producto = Console.ReadLine();
-Console.Write("Ingrese el precio del producto: ");
-decimal precio_producto = decimal.Parse(Console.ReadLine());
-Console.WriteLine($"Nombre del producto: {nombre_producto}");
-Console.WriteLine($"Precio del producto: {precio_producto:C}");
-
-Console.WriteLine();
 int opcion = 0;
 int cantidadProductos = 0;
 decimal total = 0;
@@ -33,9 +25,9 @@ do
     {
         case 1:
             Console.Write("Ingrese el nombre del producto: ");
-            nombre_producto = Console.ReadLine();
+            string nombre_producto = Console.ReadLine();
             Console.Write("Ingrese el precio del producto: ");
-            precio_producto = decimal.Parse(Console.ReadLine());
+            decimal precio_producto = decimal.Parse(Console.ReadLine());
             total += precio_producto;
             cantidadProductos++;
             Console.WriteLine($"Producto cargado: {nombre_producto} - Precio: {precio_producto:C}");
@@ -53,6 +45,30 @@ Console.WriteLine($"Total vendido: {total:C}");
 
 Console.ReadLine();
 
+
+const decimal descuento10 = 0.10m; 
+const decimal descuento5 = 0.05m;
+decimal totalConDescuento = 0;
+
+if (total > 50000)
+{
+    totalConDescuento = total - (total * descuento10);
+    Console.WriteLine($"Se aplicó un descuento del 10%. Total con descuento: {totalConDescuento:C}");
+    Console.ReadLine();
+}
+else if (total > 20000)
+{
+    totalConDescuento = total - (total * descuento5);
+
+    Console.WriteLine($"Se aplicó un descuento del 5%. Total con descuento: {totalConDescuento:C}");
+}
+else
+{
+    Console.WriteLine("No se aplicó ningún descuento.");
+}
+
+Console.WriteLine($"El total es: {total:C}, total con descuento: {totalConDescuento:C}");
+Console.ReadLine();
 
 const decimal recargo = 1.15m;
 const decimal descuento = 0.10m;
