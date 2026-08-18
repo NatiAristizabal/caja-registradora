@@ -61,7 +61,6 @@ else if (total > 20000)
     totalConDescuento = total - (total * descuento5);
 
     Console.WriteLine($"Se aplicó un descuento del 5%. Total con descuento: {totalConDescuento:C}");
-
 }
 else
 {
@@ -70,3 +69,43 @@ else
 
 Console.WriteLine($"El total es: {total:C}, total con descuento: {totalConDescuento:C}");
 Console.ReadLine();
+
+const decimal recargo = 1.15m;
+const decimal descuento = 0.10m;
+int opcionPago = 0;
+string nombreMedioPago = "";
+do
+{
+    Console.WriteLine("Medio de pago");
+    Console.WriteLine("1 - Efecetivo");
+    Console.WriteLine("2 - Debito");
+    Console.WriteLine("3 - Crédito");
+    opcionPago = int.Parse(Console.ReadLine());
+
+    if (opcionPago < 1 || opcionPago > 3)
+    {
+        Console.WriteLine("Opción inválida. Intente nuevamente.");
+    }
+}
+while(opcionPago < 1 || opcionPago > 3);
+
+switch (opcionPago)
+{
+    case 1:
+        nombreMedioPago = "Efectivo";
+        decimal totalConDescuento = total - (total * descuento);
+        Console.WriteLine($"Total a pagar: {totalConDescuento:C}");
+        break;
+    case 2:
+        nombreMedioPago = "Débito";
+        Console.WriteLine($"Total a pagar: {total:C}");
+        break;
+    case 3:
+        nombreMedioPago = "Crédito";
+        decimal totalConRecargo = total * recargo;
+        Console.WriteLine($"Total a pagar con recargo del 15%: {totalConRecargo:C}");
+        break;
+    default:
+        Console.WriteLine("Opción inválida. Intente nuevamente.");
+        break;
+}
