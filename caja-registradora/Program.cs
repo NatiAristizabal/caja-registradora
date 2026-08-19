@@ -48,7 +48,7 @@ Console.ReadLine();
 
 const decimal descuento10 = 0.10m; 
 const decimal descuento5 = 0.05m;
-decimal totalConDescuento = 0;
+decimal totalConDescuento = total;
 
 if (total > 50000)
 {
@@ -74,6 +74,10 @@ const decimal recargo = 1.15m;
 const decimal descuento = 0.10m;
 int opcionPago = 0;
 string nombreMedioPago = "";
+decimal recargoAplicado = 0;
+decimal descuentoAplicado = 0;
+decimal totalFinal = total;
+
 do
 {
     Console.WriteLine("Medio de pago");
@@ -93,19 +97,60 @@ switch (opcionPago)
 {
     case 1:
         nombreMedioPago = "Efectivo";
-        totalConDescuento = total - (total * descuento);
-        Console.WriteLine($"Total a pagar: {totalConDescuento:C}");
+        descuentoAplicado = total * descuento;
+        totalFinal = total - descuentoAplicado;
+        Console.WriteLine($"Total a pagar: {totalFinal:C}");
         break;
+
     case 2:
         nombreMedioPago = "Débito";
-        Console.WriteLine($"Total a pagar: {total:C}");
+        descuentoAplicado = total - totalConDescuento;
+        totalFinal = totalConDescuento;
+        Console.WriteLine($"Total a pagar: {totalFinal:C}");
         break;
+    
     case 3:
         nombreMedioPago = "Crédito";
-        decimal totalConRecargo = total * recargo;
-        Console.WriteLine($"Total a pagar con recargo del 15%: {totalConRecargo:C}");
+        recargoAplicado = total * (recargo - 1);
+        totalFinal = total + recargoAplicado;
+        Console.WriteLine($"Total a pagar con recargo del 15%: {totalFinal:C}");
         break;
+    
     default:
         Console.WriteLine("Opción inválida. Intente nuevamente.");
         break;
 }
+
+for (int i = 0; i < 30; i++)
+{
+    Console.Write("-");
+}
+Console.WriteLine();
+
+Console.WriteLine($"{nombre_comercio}");
+
+for (int i = 0; i < 30; i++)
+{
+    Console.Write("-");
+}
+Console.WriteLine();
+
+Console.WriteLine($"Cajero: {nombre_cajero}");
+Console.WriteLine($"Productos: {cantidadProductos}");
+Console.WriteLine($"Subtotal: {total:C}");
+Console.WriteLine($"Descuento: {descuentoAplicado:C}");
+Console.WriteLine($"Recargo: {recargoAplicado:C}");
+
+for (int i = 0; i < 30; i++)
+{
+    Console.Write("-");
+}
+Console.WriteLine();
+
+Console.WriteLine($"TOTAL: {totalFinal:C}");
+
+for (int i = 0; i < 30; i++)
+{
+    Console.Write("-");
+}
+Console.WriteLine();
