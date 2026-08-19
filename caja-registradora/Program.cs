@@ -93,7 +93,7 @@ switch (opcionPago)
 {
     case 1:
         nombreMedioPago = "Efectivo";
-        decimal totalConDescuento = total - (total * descuento);
+        totalConDescuento = total - (total * descuento);
         Console.WriteLine($"Total a pagar: {totalConDescuento:C}");
         break;
     case 2:
